@@ -21,9 +21,8 @@ Run the code:
 
 - Create folder name "data" and put .csv file as "music_dataset.csv" (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
 
-- python -m pip install -r mood_playlist_agent-main\requirements.txt
+New terminal: 
 
-- New terminal (streamlit run app.py)
+- python -m pip install -r requirements.txt
 
-
-
+- streamlit run app.py
