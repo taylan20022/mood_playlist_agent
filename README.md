@@ -19,8 +19,9 @@ Run the code:
 
 - Put API key to .env from (https://platform.openai.com/api-keys) 
 
--Put the csv file in data folder (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
+- Put the csv file in data folder (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
 
 - pip install -r requirements.txt 
 
 - New terminal (streamlit run app.py)
+
