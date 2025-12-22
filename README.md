@@ -19,10 +19,11 @@ Run the code:
 
 - Put API key to .env from (https://platform.openai.com/api-keys) 
 
-- Create folder name "data" and put .csv file as "music_dataset.csv" (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
+- Create folder name "data" and put .csv file "278k_labelled_uri.csv" as "music_dataset.csv" (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
 
 New terminal: 
 
 - python -m pip install -r requirements.txt
 
 - streamlit run app.py
+
