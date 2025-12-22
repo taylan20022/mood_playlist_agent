@@ -21,9 +21,12 @@ Run the code:
 
 - Create folder name "data" and put .csv file "278k_labelled_uri.csv" as "music_dataset.csv" (https://www.kaggle.com/datasets/abdullahorzan/moodify-dataset?resource=download)
 
+!! The database I use for songs has spelling mistake, please change "uri" to "url" inside the table.
+
 New terminal: 
 
 - python -m pip install -r requirements.txt
 
 - streamlit run app.py
+
 
