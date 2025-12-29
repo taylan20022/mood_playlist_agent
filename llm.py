@@ -5,7 +5,7 @@ from openai import OpenAI
 
 load_dotenv()
 
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
 
@@ -37,3 +37,4 @@ Rules:
     )
 
     return json.loads(response.choices[0].message.content)
+
