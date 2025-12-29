@@ -5,14 +5,20 @@ st.title("🎵 Mood-Based Playlist Agent")
 
 user_input = st.text_input(
     "What do you want to listen to?",
-    placeholder="..."
+    placeholder="e.g. calm jazz for studying"
 )
+
+# ✅ Cache to prevent repeated OpenAI calls
+@st.cache_data(show_spinner=False)
+def cached_agent_response(text):
+    return agent_response(text)
 
 if st.button("Generate Playlist"):
     if not user_input.strip():
         st.warning("Please enter a request.")
     else:
-        playlist = agent_response(user_input)
+        with st.spinner("Generating your playlist..."):
+            playlist = cached_agent_response(user_input)
 
         if not playlist:
             st.error("No songs found.")
