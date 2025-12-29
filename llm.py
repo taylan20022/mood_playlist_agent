@@ -1,11 +1,16 @@
 import os
 import json
-from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
+# ❌ DO NOT use dotenv on Streamlit Cloud
+# from dotenv import load_dotenv
+# load_dotenv()
 
-client = OpenAI()
+# ✅ Explicit check (very important)
+if "OPENAI_API_KEY" not in os.environ:
+    raise RuntimeError("OPENAI_API_KEY is not set")
+
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
 
@@ -33,7 +38,7 @@ Rules:
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0
+        temperature=0,
     )
 
     return json.loads(response.choices[0].message.content)
