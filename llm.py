@@ -3,8 +3,10 @@ import json
 from dotenv import load_dotenv
 from openai import OpenAI
 
+# Load .env locally (Streamlit Cloud will ignore this, which is fine)
 load_dotenv()
 
+# Create OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
@@ -30,11 +32,14 @@ Rules:
 - Only use allowed moods
 """
 
-response = client.responses.create(
+    # ✅ NEW OpenAI Responses API (correct)
+    response = client.responses.create(
         model="gpt-4o-mini",
         input=prompt
     )
 
-    return json.loads(response.choices[0].message.content)
+    # ✅ Correct way to extract text
+    text_output = response.output_text.strip()
 
-
+    # ✅ Parse JSON safely
+    return json.loads(text_output)
