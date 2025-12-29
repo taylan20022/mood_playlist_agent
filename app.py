@@ -5,7 +5,7 @@ st.title("🎵 Mood-Based Playlist Agent")
 
 user_input = st.text_input(
     "What do you want to listen to?",
-    placeholder="e.g. calm jazz for studying"
+    placeholder="..."
 )
 
 # ✅ Cache to prevent repeated OpenAI calls
@@ -26,3 +26,4 @@ if st.button("Generate Playlist"):
             st.subheader("🎧 Your Playlist")
             for i, url in enumerate(playlist, 1):
                 st.markdown(f"{i}. [Open song]({url})")
+
