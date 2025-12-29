@@ -1,10 +1,13 @@
+import os
 import json
-import streamlit as st
+from dotenv import load_dotenv
 from openai import OpenAI
 
-ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
+load_dotenv()
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client = OpenAI()
+
+ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
 
 def analyze_user_input(user_input: str):
     prompt = f"""
@@ -12,29 +15,25 @@ You are an intent parser.
 
 Allowed moods: {ALLOWED_MOODS}
 
-User input: "{user_input}"
+User request:
+"{user_input}"
 
 Return ONLY valid JSON in this format:
 {{
-  "mood": "sad | happy | energetic | calm",
-  "artist": "optional artist name or null"
+  "moods": [],
+  "n_songs": number
 }}
+
+Rules:
+- Infer moods from meaning (e.g. dancing → energetic + happy)
+- If number is not mentioned, use 10
+- Only use allowed moods
 """
 
-    try:
-        response = client.responses.create(
-            model="gpt-4o-mini",
-            input=prompt
-        )
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
+    )
 
-        raw_text = response.output_text.strip()
-        return json.loads(raw_text)
-
-    except Exception as e:
-        # This will show the REAL OpenAI error in Streamlit
-        st.error(f"OpenAI API error: {e}")
-        return {
-            "mood": "calm",
-            "artist": None
-        }
-
+    return json.loads(response.choices[0].message.content)
