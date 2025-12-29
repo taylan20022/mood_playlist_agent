@@ -2,13 +2,8 @@ import os
 import json
 from openai import OpenAI
 
-# ❌ DO NOT use dotenv on Streamlit Cloud
-# from dotenv import load_dotenv
-# load_dotenv()
-
-# ✅ Explicit check (very important)
 if "OPENAI_API_KEY" not in os.environ:
-    raise RuntimeError("OPENAI_API_KEY is not set")
+    raise RuntimeError("OPENAI_API_KEY missing")
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
@@ -28,11 +23,6 @@ Return ONLY valid JSON in this format:
   "moods": [],
   "n_songs": number
 }}
-
-Rules:
-- Infer moods from meaning (e.g. dancing → energetic + happy)
-- If number is not mentioned, use 10
-- Only use allowed moods
 """
 
     response = client.chat.completions.create(
