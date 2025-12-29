@@ -30,11 +30,11 @@ Rules:
 - Only use allowed moods
 """
 
-    response = client.chat.completions.create(
+response = client.responses.create(
         model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
+        input=prompt
     )
 
     return json.loads(response.choices[0].message.content)
+
 
