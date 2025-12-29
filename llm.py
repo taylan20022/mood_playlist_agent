@@ -7,7 +7,7 @@ from openai import OpenAI
 load_dotenv()
 
 # Create OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("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"))
 
 ALLOWED_MOODS = ["sad", "happy", "energetic", "calm"]
 
@@ -43,3 +43,4 @@ Rules:
 
     # ✅ Parse JSON safely
     return json.loads(text_output)
+
