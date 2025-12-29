@@ -23,7 +23,7 @@ Return ONLY valid JSON in this format:
 
     try:
         response = client.responses.create(
-            model="gpt-4.1-mini",
+            model="gpt-4o-mini",
             input=prompt
         )
 
@@ -37,3 +37,4 @@ Return ONLY valid JSON in this format:
             "mood": "calm",
             "artist": None
         }
+
